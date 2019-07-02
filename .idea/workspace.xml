@@ -162,8 +162,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+            <state relative-caret-position="259">
+              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -179,7 +179,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -457,7 +457,7 @@
       <workItem from="1562032244131" duration="5428000" />
       <workItem from="1562072409202" duration="4253000" />
       <workItem from="1562079459161" duration="987000" />
-      <workItem from="1562088030866" duration="6723000" />
+      <workItem from="1562088030866" duration="7786000" />
     </task>
     <task id="LOCAL-00001" summary="update java_apps">
       <created>1561835315246</created>
@@ -498,7 +498,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65155000" />
+    <option name="totallyTimeSpent" value="66218000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -511,6 +511,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="31" width="1606" height="1123" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4993598" visible="true" weight="0.2281491" />
       <window_info id="Structure" order="1" sideWeight="0.5006402" side_tool="true" weight="0.18766066" />
@@ -1061,8 +1062,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+        <state relative-caret-position="259">
+          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
         </state>
       </provider>
     </entry>
