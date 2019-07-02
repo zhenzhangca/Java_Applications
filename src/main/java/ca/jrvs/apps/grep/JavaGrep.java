@@ -7,12 +7,14 @@ import java.util.List;
 public interface JavaGrep {
     /**
      * Top level search workflow
+     *
      * @throws java.io.IOException
      */
     void process() throws IOException;
 
     /**
      * Traverse a given directory and return all files
+     *
      * @param rootDir input directory
      * @return files under the rootDir
      */
@@ -21,6 +23,7 @@ public interface JavaGrep {
     /**
      * Read a file and return all the lines
      * Explore: FileReader, BufferReader and Character encoding
+     *
      * @param inputFile file to be read
      * @return lines
      * @throws IllegalAccessException if a given inputFile is not a file
@@ -29,6 +32,7 @@ public interface JavaGrep {
 
     /**
      * check if a line contains the regex pattern (passed by user)
+     *
      * @param line input String
      * @return true if there is a match
      */
@@ -37,6 +41,7 @@ public interface JavaGrep {
     /**
      * write a line to a file
      * Explore: FileOutputStream, OutputStreamWriter and BufferedWriter
+     *
      * @param lines matched line
      * @throws IOException if write failed
      */
@@ -46,10 +51,15 @@ public interface JavaGrep {
      * getter/setter
      */
     String getRootPath();
+
     void setRootPath(String rootPath);
+
     String getRegex();
+
     void setRegex(String regex);
+
     String getOutFile();
+
     void setOutFile(String outFile);
 }
 
