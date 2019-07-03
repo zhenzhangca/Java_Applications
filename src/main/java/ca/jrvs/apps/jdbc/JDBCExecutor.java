@@ -35,16 +35,16 @@ public class JDBCExecutor {
             customer_2.setState("ON");
             customer_2.setZipCode("M3K5R1");
             //have return value, test when necessary
-//            customerDAO.create(customer_2);
+            customerDAO.create(customer_2);
             System.out.println("===========DEMO 2==============");
 
             //Demo 3 test findById method in CustomerDAO
-            Customer customer_3 =customerDAO.findById(10000);
+            Customer customer_3 =customerDAO.findById(10007);
             System.out.println(customer_3.getFirstName()+", " + customer_3.getLastName());
             System.out.println("===========DEMO 3==============");
 
             //Demo 4 test update method in CustomerDAO
-            Customer customer_4 = customerDAO.findById(10000);
+            Customer customer_4 = customerDAO.findById(10007);
             System.out.println(customer_4.getFirstName() + ", " + customer_4.getLastName() + " " + customer_4.getEmail());
             customer_4.setEmail("zhenzhang@wh.gov");
             //System.out.println(customer_4.getFirstName() + ", " + customer_4.getLastName() + " " + customer_4.getEmail());
@@ -53,10 +53,10 @@ public class JDBCExecutor {
             System.out.println("===========DEMO 4==============");
 
             //Demo 5 test delete method in CustomerDAO
-            Customer customer_5 = customerDAO.findById(10000);
+            Customer customer_5 = customerDAO.findById(10007);
             System.out.println(customer_5);
             customerDAO.delete(customer_5.getId());
-            System.out.println(customerDAO.findById(10000));
+            System.out.println(customerDAO.findById(10007  ));
             System.out.println("===========DEMO 5==============");
 
             OrderDAO orderDAO = new OrderDAO(connection);

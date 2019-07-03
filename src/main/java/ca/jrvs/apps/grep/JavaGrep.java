@@ -5,61 +5,59 @@ import java.io.IOException;
 import java.util.List;
 
 public interface JavaGrep {
-    /**
-     * Top level search workflow
-     *
-     * @throws java.io.IOException
-     */
-    void process() throws IOException;
 
-    /**
-     * Traverse a given directory and return all files
-     *
-     * @param rootDir input directory
-     * @return files under the rootDir
-     */
-    List<File> listFiles(String rootDir);
+  /**
+   * Top level search workflow
+   */
+  void process() throws IOException;
 
-    /**
-     * Read a file and return all the lines
-     * Explore: FileReader, BufferReader and Character encoding
-     *
-     * @param inputFile file to be read
-     * @return lines
-     * @throws IllegalAccessException if a given inputFile is not a file
-     */
-    List<String> readLines(File inputFile);
+  /**
+   * Traverse a given directory and return all files
+   *
+   * @param rootDir input directory
+   * @return files under the rootDir
+   */
+  List<File> listFiles(String rootDir);
 
-    /**
-     * check if a line contains the regex pattern (passed by user)
-     *
-     * @param line input String
-     * @return true if there is a match
-     */
-    boolean containsPattern(String line);
+  /**
+   * Read a file and return all the lines
+   * Explore: FileReader, BufferReader and Character encoding
+   *
+   * @param inputFile file to be read
+   * @return lines
+   * @throws IllegalAccessException if a given inputFile is not a file
+   */
+  List<String> readLines(File inputFile) throws IllegalAccessException;
 
-    /**
-     * write a line to a file
-     * Explore: FileOutputStream, OutputStreamWriter and BufferedWriter
-     *
-     * @param lines matched line
-     * @throws IOException if write failed
-     */
-    void writeToFile(List<String> lines) throws IOException;
+  /**
+   * check if a line contains the regex pattern (passed by user)
+   *
+   * @param line input String
+   * @return true if there is a match
+   */
+  boolean containsPattern(String line);
 
-    /**
-     * getter/setter
-     */
-    String getRootPath();
+  /**
+   * write a line to a file Explore: FileOutputStream, OutputStreamWriter and BufferedWriter
+   *
+   * @param lines matched line
+   * @throws IOException if write failed
+   */
+  void writeToFile(List<String> lines) throws IOException;
 
-    void setRootPath(String rootPath);
+  /**
+   * getter/setter
+   */
+  String getRootPath();
 
-    String getRegex();
+  void setRootPath(String rootPath);
 
-    void setRegex(String regex);
+  String getRegex();
 
-    String getOutFile();
+  void setRegex(String regex);
 
-    void setOutFile(String outFile);
+  String getOutFile();
+
+  void setOutFile(String outFile);
 }
 
