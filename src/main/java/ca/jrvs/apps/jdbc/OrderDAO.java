@@ -25,7 +25,7 @@ public class OrderDAO extends DataAccessObject<Order> {
             "join product p on ol.product_id = p.product_id " +
             "where o.order_id = ?";
 
-    private  static final String GET_FOR_CUST = "SELECT * from get_orders_by_customer(?)";
+    private static final String GET_FOR_CUST = "SELECT * from get_orders_by_customer(?)";
 
     public OrderDAO(Connection connection) {
         super(connection);
@@ -34,13 +34,13 @@ public class OrderDAO extends DataAccessObject<Order> {
     @Override
     public Order findById(long id) {
         Order order = new Order();
-        try(PreparedStatement statement = this.connection.prepareStatement(GET_BY_ID);){
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_BY_ID);) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             long orderId = 0;
             List<OrderLine> orderLines = new ArrayList<>();
-            while(resultSet.next()){
-                if(orderId == 0){
+            while (resultSet.next()) {
+                if (orderId == 0) {
                     //according to sql GET_BY_ID
                     order.setCustomerFirstName(resultSet.getString(1));
                     order.setCustomerLastName(resultSet.getString(2));
@@ -69,7 +69,7 @@ public class OrderDAO extends DataAccessObject<Order> {
             }
             //when orderLines list is ok, assign this list to order(so order is also global)
             order.setOrderLines(orderLines);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -96,16 +96,16 @@ public class OrderDAO extends DataAccessObject<Order> {
 
     }
 
-    public List<Order> getOrderForCustomer(long customerId){
+    public List<Order> getOrderForCustomer(long customerId) {
         List<Order> orders = new ArrayList<>();
-        try(PreparedStatement statement = this.connection.prepareStatement(GET_FOR_CUST);){
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_FOR_CUST);) {
             statement.setLong(1, customerId);
             ResultSet rs = statement.executeQuery();
             long orderId = 0;
             Order order = null;
-            while(rs.next()){
+            while (rs.next()) {
                 long localOrderId = rs.getLong(4);
-                if(orderId != localOrderId){
+                if (orderId != localOrderId) {
                     order = new Order();
                     orders.add(order);
                     order.setId(localOrderId);
@@ -133,7 +133,7 @@ public class OrderDAO extends DataAccessObject<Order> {
 
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }

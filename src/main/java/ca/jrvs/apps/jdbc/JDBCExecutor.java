@@ -10,16 +10,16 @@ import java.util.List;
 public class JDBCExecutor {
     public static void main(String[] args) {
         DatabaseConnectionManager dcm = new DatabaseConnectionManager("localhost",
-                "hplussport","postgres", "password");
+                "hplussport", "postgres", "password");
 
-        try{
+        try {
             Connection connection = dcm.getConnection();
 
             CustomerDAO customerDAO = new CustomerDAO(connection);
             //Demo 1, test connection
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM CUSTOMER");
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 System.out.println(resultSet.getInt(1));
             }
             System.out.println("===========DEMO 1==============");
@@ -39,12 +39,12 @@ public class JDBCExecutor {
             System.out.println("===========DEMO 2==============");
 
             //Demo 3 test findById method in CustomerDAO
-            Customer customer_3 =customerDAO.findById(10007);
-            System.out.println(customer_3.getFirstName()+", " + customer_3.getLastName());
+            Customer customer_3 = customerDAO.findById(10008);
+            System.out.println(customer_3.getFirstName() + ", " + customer_3.getLastName());
             System.out.println("===========DEMO 3==============");
 
             //Demo 4 test update method in CustomerDAO
-            Customer customer_4 = customerDAO.findById(10007);
+            Customer customer_4 = customerDAO.findById(10008);
             System.out.println(customer_4.getFirstName() + ", " + customer_4.getLastName() + " " + customer_4.getEmail());
             customer_4.setEmail("zhenzhang@wh.gov");
             //System.out.println(customer_4.getFirstName() + ", " + customer_4.getLastName() + " " + customer_4.getEmail());
@@ -53,10 +53,10 @@ public class JDBCExecutor {
             System.out.println("===========DEMO 4==============");
 
             //Demo 5 test delete method in CustomerDAO
-            Customer customer_5 = customerDAO.findById(10007);
+            Customer customer_5 = customerDAO.findById(10008);
             System.out.println(customer_5);
             customerDAO.delete(customer_5.getId());
-            System.out.println(customerDAO.findById(10007  ));
+            System.out.println(customerDAO.findById(10008));
             System.out.println("===========DEMO 5==============");
 
             OrderDAO orderDAO = new OrderDAO(connection);
@@ -77,20 +77,14 @@ public class JDBCExecutor {
 
             //Demo 9 test findAllPaged
             System.out.println("FindAllPaged:");
-            for(int i =1; i < 3; i++) {
+            for (int i = 1; i < 3; i++) {
                 System.out.println("********Page number:" + i);
                 customerDAO.findAllPaged(10, i).forEach(System.out::println);
             }
             System.out.println("===========DEMO 9==============");
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
 
 
     }
