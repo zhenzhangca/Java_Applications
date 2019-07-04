@@ -54,7 +54,9 @@ public class ApacheHttpHelper implements HttpHelper {
     public HttpResponse httpPost(URI uri, StringEntity stringEntity) {
         //setup oauth
         OAuthConsumer consumer = this.setOauth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
-        HttpPost request = new HttpPost(uri + "?" + stringEntity);
+        HttpPost request = new HttpPost(uri);
+        request.setEntity(stringEntity);
+
         //create a httpClient
         HttpClient httpClient = new DefaultHttpClient();
         HttpResponse response = null;
@@ -111,6 +113,9 @@ public class ApacheHttpHelper implements HttpHelper {
         consumer.setTokenWithSecret(ACCESS_TOKEN, TOKEN_SECRET);
         return consumer;
     }
+
+
+
 
 }
 

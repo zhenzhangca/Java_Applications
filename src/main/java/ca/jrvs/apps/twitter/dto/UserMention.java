@@ -1,6 +1,6 @@
 package ca.jrvs.apps.twitter.dto;
 
-public class User_Mention {
+public class UserMention {
     private long id;
     private String id_str;
     private int[] indices;

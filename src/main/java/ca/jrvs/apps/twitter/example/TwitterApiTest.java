@@ -5,6 +5,7 @@ import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
@@ -34,6 +35,8 @@ public class TwitterApiTest {
         //send/execute the request
         HttpClient httpClient = new DefaultHttpClient();
         HttpResponse response = httpClient.execute(request);
+
         System.out.println(EntityUtils.toString(response.getEntity()));
+
     }
 }

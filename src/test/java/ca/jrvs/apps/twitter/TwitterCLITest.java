@@ -1,4 +1,4 @@
 package ca.jrvs.apps.twitter;
 
-public class TwitterCLIRunner {
+public class TwitterCLITest {
 }
