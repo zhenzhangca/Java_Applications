@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
-public class ApacheHttpHelperIntTest {
+public class ApacheHttpHelperIntTest_todelete {
     HttpHelper httpHelper = new ApacheHttpHelper() ;
 
     @Test
@@ -24,7 +24,7 @@ public class ApacheHttpHelperIntTest {
         postParameters.add(new BasicNameValuePair("status", "a new tweet"));
         StringEntity entity = new UrlEncodedFormEntity(postParameters, "UTF-8");
         String uri = "https://api.twitter.com/1.1/statuses/update.json";
-        HttpResponse response = httpHelper.httpPost(new URI(uri), entity);
+       // HttpResponse response = httpHelper.httpPost(new URI(uri), entity);
 //        System.out.println(response.getEntity());
 //        StringBuffer sb = new StringBuffer();
 //        BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -37,8 +37,8 @@ public class ApacheHttpHelperIntTest {
 //        System.out.println(sb.toString());
 //
 //        br.close();
-        assertNotNull(response);
-        assertEquals(200,response.getStatusLine().getStatusCode() );
+        //assertNotNull(response);
+       // assertEquals(200,response.getStatusLine().getStatusCode() );
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ApacheHttpHelperIntTest {
 
     @Test
     public void httpPostDelete() throws Exception{
-        String uri =  "https://api.twitter.com/1.1/statuses/destroy/1146805670265729024.json";
+        String uri =  "/1146805670265729024.json";
         HttpResponse response = httpHelper.httpPost(new URI(uri));
         assertNotNull(response);
         assertEquals(200, response.getStatusLine().getStatusCode());

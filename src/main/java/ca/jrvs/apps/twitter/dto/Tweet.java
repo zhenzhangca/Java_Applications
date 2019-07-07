@@ -1,41 +1,65 @@
 package ca.jrvs.apps.twitter.dto;
 
-import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "created_at",
+        "id",
+        "id_str",
+        "text",
+        "entities",
+        "coordinates",
+        "retweet_count",
+        "favorite_count",
+        "favorited",
+        "retweeted"
+})
 public class Tweet {
-    private String create_at;
-    private long id;
-    private String id_str;
+    @JsonProperty("created_at")
+    private String createdAt;
+    @JsonProperty("id")
+    private Long id;
+    @JsonProperty("id_str")
+    private String idStr;
+    @JsonProperty("text")
     private String text;
+    @JsonProperty("entities")
     private Entities entities;
+    @JsonProperty("coordinates")
     private Coordinates coordinates;
-    private int retweet_count;
-    private Integer favorite_count;
+    @JsonProperty("retweet_count")
+    private Long retweetCount;
+    @JsonProperty("favorite_count")
+    private Long favoriteCount;
+    @JsonProperty("favorited")
     private Boolean favorited;
+    @JsonProperty("retweeted")
     private Boolean retweeted;
 
-    public String getCreate_at() {
-        return create_at;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreate_at(String create_at) {
-        this.create_at = create_at;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getId_str() {
-        return id_str;
+    public String getIdStr() {
+        return idStr;
     }
 
-    public void setId_str(String id_str) {
-        this.id_str = id_str;
+    public void setIdStr(String idStr) {
+        this.idStr = idStr;
     }
 
     public String getText() {
@@ -62,20 +86,20 @@ public class Tweet {
         this.coordinates = coordinates;
     }
 
-    public int getRetweet_count() {
-        return retweet_count;
+    public Long getRetweetCount() {
+        return retweetCount;
     }
 
-    public void setRetweet_count(int retweet_count) {
-        this.retweet_count = retweet_count;
+    public void setRetweetCount(Long retweetCount) {
+        this.retweetCount = retweetCount;
     }
 
-    public Integer getFavorite_count() {
-        return favorite_count;
+    public Long getFavoriteCount() {
+        return favoriteCount;
     }
 
-    public void setFavorite_count(Integer favorite_count) {
-        this.favorite_count = favorite_count;
+    public void setFavoriteCount(Long favoriteCount) {
+        this.favoriteCount = favoriteCount;
     }
 
     public Boolean getFavorited() {

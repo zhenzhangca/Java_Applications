@@ -1,15 +1,29 @@
 package ca.jrvs.apps.twitter.example.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({"symbol", "companyName", "exchange", "description", "CEO", "sector", "financials", "dividends"})
 public class Company {
+    @JsonProperty("symbol")
     private String symbol;
+    @JsonProperty("companyName")
     private String companyName;
+    @JsonProperty("exchange")
     private String exchange;
+    @JsonProperty("description")
     private String description;
-    private String CEO;
+    @JsonProperty("CEO")
+    private String ceo;
+    @JsonProperty("sector")
     private String sector;
+    @JsonProperty("financials")
     private List<Financial> financials;
+    @JsonProperty("dividends")
     private List<Dividend> dividends;
 
     public String getSymbol() {
@@ -44,12 +58,13 @@ public class Company {
         this.description = description;
     }
 
-    public String getCEO() {
-        return CEO;
+
+    public String getCeo() {
+        return ceo;
     }
 
-    public void setCEO(String CEO) {
-        this.CEO = CEO;
+    public void setCeo(String ceo) {
+        this.ceo = ceo;
     }
 
     public String getSector() {
@@ -74,5 +89,19 @@ public class Company {
 
     public void setDividends(List<Dividend> dividends) {
         this.dividends = dividends;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "symbol='" + symbol + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", exchange='" + exchange + '\'' +
+                ", description='" + description + '\'' +
+                ", ceo='" + ceo + '\'' +
+                ", sector='" + sector + '\'' +
+                ", financials=" + financials +
+                ", dividends=" + dividends +
+                '}';
     }
 }

@@ -5,5 +5,5 @@ public interface TwitterService {
 
     void showTweet(String id, String[] fields);
 
-    void deleteTweet(String[] ids);
+    void deleteTweets(String[] ids);
 }

@@ -1,10 +1,12 @@
 package ca.jrvs.apps.twitter.example;
 
+import com.google.gdata.util.common.base.PercentEscaper;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
@@ -24,19 +26,42 @@ public class TwitterApiTest {
         consumer.setTokenWithSecret(ACCESS_TOKEN, TOKEN_SECRET);
 
         //create a HTTP GET request
-        HttpGet request = new HttpGet("https://api.twitter.com/1.1/users/search.json?" +
-                "q=ZhenZha99395429");
+        HttpGet getRequest = new HttpGet("https://api.twitter.com/1.1/statuses/user_timeline.json?" +
+                "screen_name=ZhenZha99395429&count=2");
+        //create a HTTP POST request
+        String status = "have a nice weekend! 7.07";
+        PercentEscaper percentEscaper = new PercentEscaper("", false);
+        HttpPost postRequest = new HttpPost("https://api.twitter.com/1.1/statuses/update.json?status=" + percentEscaper.escape(status));
+
+        HttpClient httpClient = new DefaultHttpClient();
+
+        // send the GET request
+        sendGetRequest(consumer, getRequest, httpClient);
+        //send the POST request
+        sendPostRequest(consumer, postRequest, httpClient);
+    }
+
+    private static void sendGetRequest(OAuthConsumer consumer, HttpGet getRequest, HttpClient httpClient) throws Exception {
+        //sign the request (add header)
+        consumer.sign(getRequest);
+        System.out.println("Http Rquest Headers:");
+        Arrays.stream(getRequest.getAllHeaders()).forEach(System.out::println);
+
+        //send/execute the GET request
+        HttpResponse getResponse = httpClient.execute(getRequest);
+        System.out.println(EntityUtils.toString(getResponse.getEntity()));
+
+    }
+
+    private static void sendPostRequest(OAuthConsumer consumer, HttpPost postRequest, HttpClient httpClient) throws Exception {
 
         //sign the request (add header)
-        consumer.sign(request);
+        consumer.sign(postRequest);
         System.out.println("Http Rquest Headers:");
-        Arrays.stream(request.getAllHeaders()).forEach(System.out::println);
+        Arrays.stream(postRequest.getAllHeaders()).forEach(System.out::println);
 
-        //send/execute the request
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpResponse response = httpClient.execute(request);
-
-        System.out.println(EntityUtils.toString(response.getEntity()));
-
+        //send/execute the POST request
+        HttpResponse postResponse = httpClient.execute(postRequest);
+        System.out.println(EntityUtils.toString(postResponse.getEntity()));
     }
 }

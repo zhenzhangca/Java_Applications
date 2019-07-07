@@ -1,5 +1,6 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
+import ca.jrvs.apps.twitter.util.StringUtil;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthCommunicationException;
@@ -10,90 +11,67 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.junit.platform.commons.util.StringUtils;
 
 import java.io.IOException;
 import java.net.URI;
 
 public class ApacheHttpHelper implements HttpHelper {
-    private static String CONSUMER_KEY = System.getenv("consumerKey");
-    private static String CONSUMER_SECRET = System.getenv("consumerSecret");
-    private static String ACCESS_TOKEN = System.getenv("accessToken");
-    private static String TOKEN_SECRET = System.getenv("tokenSecret");
 
-    @Override
-    public HttpResponse httpPost(URI uri) {
-        //setup oauth
-        OAuthConsumer consumer = this.setOauth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
-        //create a HTTP GET request
-        HttpPost request = new HttpPost(uri);
-        //create a httpClient
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpResponse response = null;
-        try {
-            //sign the request
-            consumer.sign(request);
-            //send/execute the request
-            response = httpClient.execute(request);
-        } catch (OAuthMessageSignerException e) {
-            e.printStackTrace();
-        } catch (OAuthExpectationFailedException e) {
-            e.printStackTrace();
-        } catch (OAuthCommunicationException e) {
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private OAuthConsumer consumer;
+    private HttpClient client;
+
+    //Initialize parameters
+    public ApacheHttpHelper() {
+        //Get keys and tokens from system environment
+        String consumerKey = System.getenv("consumerKey");
+        String consumerSecret = System.getenv("consumerSecret");
+        String accessToken = System.getenv("accessToken");
+        String tokenSecret = System.getenv("tokenSecret");
+
+        if (StringUtil.isEmpty(consumerKey, consumerSecret, accessToken, tokenSecret)) {
+            throw new RuntimeException("Unable to detect keys and tokens from system environment");
         }
-        return response;
+
+        //Setup OAuth
+        consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
+        consumer.setTokenWithSecret(accessToken, tokenSecret);
+        client = new DefaultHttpClient();
+    }
+
+
+    //initialize member fields
+    public ApacheHttpHelper(OAuthConsumer consumer, HttpClient client) {
+        this.consumer = consumer;
+        this.client = client;
     }
 
     @Override
-    public HttpResponse httpPost(URI uri, StringEntity stringEntity) {
-        //setup oauth
-        OAuthConsumer consumer = this.setOauth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
+    public HttpResponse httpPost(URI uri) {
+        //create a HTTP GET request
         HttpPost request = new HttpPost(uri);
-        request.setEntity(stringEntity);
-
-        //create a httpClient
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpResponse response = null;
-        try {
-            //sign the request
-            consumer.sign(request);
-            //send/execute the request
-            response = httpClient.execute(request);
-        } catch (OAuthMessageSignerException e) {
-            e.printStackTrace();
-        } catch (OAuthExpectationFailedException e) {
-            e.printStackTrace();
-        } catch (OAuthCommunicationException e) {
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return response;
+        return getResponse(request);
     }
 
     @Override
     public HttpResponse httpGet(URI uri) {
-        //setup oauth
-        OAuthConsumer consumer = this.setOauth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
-
-
+        //create a HTTP POst request
         HttpGet request = new HttpGet(uri);
+        return getResponse(request);
+    }
+
+
+
+    private HttpResponse getResponse(HttpRequestBase request) {
         //create a httpClient
-        HttpClient httpClient = new DefaultHttpClient();
         HttpResponse response = null;
         try {
             //sign the request
             consumer.sign(request);
             //send/execute the request
-            response = httpClient.execute(request);
+            response = client.execute(request);
         } catch (OAuthMessageSignerException e) {
             e.printStackTrace();
         } catch (OAuthExpectationFailedException e) {
@@ -107,16 +85,6 @@ public class ApacheHttpHelper implements HttpHelper {
         }
         return response;
     }
-
-    private OAuthConsumer setOauth(String CONSUMER_KEY, String CONSUMER_SECRET, String ACCESS_TOKEN, String TOKEN_SECRET) {
-        OAuthConsumer consumer = new CommonsHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
-        consumer.setTokenWithSecret(ACCESS_TOKEN, TOKEN_SECRET);
-        return consumer;
-    }
-
-
-
-
 }
 
 

@@ -1,34 +1,53 @@
 package ca.jrvs.apps.twitter.service;
 
-import ca.jrvs.apps.twitter.dao.TwitterRestDao;
-import ca.jrvs.apps.twitter.dto.Coordinates;
+import ca.jrvs.apps.twitter.dao.CrdRepository;
 import ca.jrvs.apps.twitter.dto.Tweet;
 
-public class TwitterServiceImp implements TwitterService {
-    TwitterRestDao twitterRestDao = new TwitterRestDao();
+import static ca.jrvs.apps.twitter.util.TwitterUtil.*;
 
+public class TwitterServiceImp implements TwitterService {
+    private CrdRepository dao;
+
+    public TwitterServiceImp(CrdRepository dao) {
+        this.dao = dao;
+    }
     @Override
     public void postTweet(String text, Double latitude, Double longitude) {
-        Tweet tweet = new Tweet();
-        Coordinates coordinates = new Coordinates();
-        coordinates.setCoordiantes(new double[]{latitude, longitude});
-        tweet.setText(text);
-        tweet.setCoordinates(coordinates);
-        twitterRestDao.save(tweet);
+        //Build a Tweet
+        Tweet postTweet = buildTweet(text, latitude, longitude);
+        //Validate tweet
+        validatePostTweet(postTweet);
+        try {
+            Tweet responseTweet = (Tweet)dao.save(postTweet);
+            printTweet(responseTweet);
+        }catch(Exception e) {
+            throw new RuntimeException("Fail to post tweet");
+        }
     }
-
     @Override
     public void showTweet(String id, String[] fields) {
-        Tweet tweet = twitterRestDao.findById(id);
-        for(String field: fields){
+        //Validate id
+        if(!validateId.test(id)) {
+            throw new IllegalArgumentException("id must be a number");
         }
+        //Get tweet by id, print selected fields
+        try {
+            Tweet tweet = (Tweet)dao.findById(id);
+            printTweet(selectFields(tweet, fields));
+        }catch(Exception e) {
+            throw new RuntimeException("Fail to show tweet");
+        }
+    }
+    @Override
+    public void deleteTweets(String[] ids) {
 
     }
 
-    @Override
-    public void deleteTweet(String[] ids) {
-        for(String id : ids) {
-            twitterRestDao.deleteById(id);
-        }
+    protected void printTweet(Tweet tweet){
+
+    }
+
+    protected Tweet selectFields(Tweet tweet, String[] fields){
+        return null;
     }
 }

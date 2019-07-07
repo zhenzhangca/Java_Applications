@@ -1,14 +1,27 @@
 package ca.jrvs.apps.twitter.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.util.List;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "indices",
+        "text"
+})
 public class Hashtag {
-    private int[] indices;
+    @JsonProperty("indices")
+    private List<Long> indices;
+    @JsonProperty("text")
     private String text;
 
-    public int[] getIndices() {
+    public List<Long> getIndices() {
         return indices;
     }
 
-    public void setIndices(int[] indices) {
+    public void setIndices(List<Long> indices) {
         this.indices = indices;
     }
 

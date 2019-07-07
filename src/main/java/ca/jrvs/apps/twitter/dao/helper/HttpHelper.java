@@ -7,6 +7,8 @@ import java.net.URI;
 
 public interface HttpHelper {
     HttpResponse httpPost(URI uri);
-    HttpResponse httpPost(URI uri, StringEntity stringEntity);
+
+    //HttpResponse httpPost(URI uri, StringEntity stringEntity);
+
     HttpResponse httpGet(URI uri);
 }

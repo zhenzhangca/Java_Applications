@@ -1,69 +1,72 @@
 package ca.jrvs.apps.twitter.example.dto;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.math.BigInteger;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Financial {
-    private Date reportDate;
-    private long grossProfit;
-    private long costOfRevenue;
-    private long operatingRevenue;
-    private long totalRevenue;
-    private long operatingIncome;
-    private long netIncome;
+    private String reportDate;
+    private BigInteger grossProfit;
+    private BigInteger costOfRevenue;
+    private BigInteger operatingRevenue;
+    private BigInteger totalRevenue;
+    private BigInteger operatingIncome;
+    private BigInteger netIncome;
 
-    public Date getReportDate() {
+    public String getReportDate() {
         return reportDate;
     }
 
-    public void setReportDate(Date reportDate) {
+    public void setReportDate(String reportDate) {
         this.reportDate = reportDate;
     }
 
-    public long getGrossProfit() {
+    public BigInteger getGrossProfit() {
         return grossProfit;
     }
 
-    public void setGrossProfit(long grossProfit) {
+    public void setGrossProfit(BigInteger grossProfit) {
         this.grossProfit = grossProfit;
     }
 
-    public long getCostOfRevenue() {
+    public BigInteger getCostOfRevenue() {
         return costOfRevenue;
     }
 
-    public void setCostOfRevenue(long costOfRevenue) {
+    public void setCostOfRevenue(BigInteger costOfRevenue) {
         this.costOfRevenue = costOfRevenue;
     }
 
-    public long getOperatingRevenue() {
+    public BigInteger getOperatingRevenue() {
         return operatingRevenue;
     }
 
-    public void setOperatingRevenue(long operatingRevenue) {
+    public void setOperatingRevenue(BigInteger operatingRevenue) {
         this.operatingRevenue = operatingRevenue;
     }
 
-    public long getTotalRevenue() {
+    public BigInteger getTotalRevenue() {
         return totalRevenue;
     }
 
-    public void setTotalRevenue(long totalRevenue) {
+    public void setTotalRevenue(BigInteger totalRevenue) {
         this.totalRevenue = totalRevenue;
     }
 
-    public long getOperatingIncome() {
+    public BigInteger getOperatingIncome() {
         return operatingIncome;
     }
 
-    public void setOperatingIncome(long operatingIncome) {
+    public void setOperatingIncome(BigInteger operatingIncome) {
         this.operatingIncome = operatingIncome;
     }
 
-    public long getNetIncome() {
+    public BigInteger getNetIncome() {
         return netIncome;
     }
 
-    public void setNetIncome(long netIncome) {
+    public void setNetIncome(BigInteger netIncome) {
         this.netIncome = netIncome;
     }
 }
