@@ -9,8 +9,7 @@ public class JavaGrepImp implements JavaGrep {
   private String regex;
   private String rootPath;
   private String outFile;
-  // fileList must be global variable for recursive calling to
-  // make sure we only have one fileList object
+
   private List<File> fileList = new ArrayList<>();
 
   @Override
