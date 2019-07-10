@@ -29,7 +29,7 @@ public class TwitterApiTest {
         HttpGet getRequest = new HttpGet("https://api.twitter.com/1.1/statuses/user_timeline.json?" +
                 "screen_name=ZhenZha99395429&count=2");
         //create a HTTP POST request
-        String status = "have a nice weekend! 7.07";
+        String status = "have a nice weekend!"+System.currentTimeMillis();
         PercentEscaper percentEscaper = new PercentEscaper("", false);
         HttpPost postRequest = new HttpPost("https://api.twitter.com/1.1/statuses/update.json?status=" + percentEscaper.escape(status));
 

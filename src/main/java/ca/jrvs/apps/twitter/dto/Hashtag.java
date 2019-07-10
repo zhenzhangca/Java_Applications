@@ -17,18 +17,22 @@ public class Hashtag {
     @JsonProperty("text")
     private String text;
 
+    @JsonProperty("indices")
     public List<Long> getIndices() {
         return indices;
     }
 
+    @JsonProperty("indices")
     public void setIndices(List<Long> indices) {
         this.indices = indices;
     }
 
+    @JsonProperty("text")
     public String getText() {
         return text;
     }
 
+    @JsonProperty("text")
     public void setText(String text) {
         this.text = text;
     }

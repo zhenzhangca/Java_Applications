@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class TwitterUtil {
-    private static final Double MAX_LAT = 90d; // d?
+    private static final Double MAX_LAT = 90d;
     private static final Double MIN_LAT = -90d;
     private static final Double MAX_LON = 180d;
     private static final Double MIN_LON = -180d;
@@ -15,11 +15,10 @@ public class TwitterUtil {
     // 140 UTF-8 encoded characters. Each UTF-8 character is 4 bytes.
     private static final Integer MAX_TWEET_CHAR = 140;
 
-    // Validate id
-    public static Predicate<String> validateId = (id) -> !StringUtil.isEmpty(id)
-            && id.chars().noneMatch(c -> c < '0' || c > '9');
+    // Validate a id
+    public static Predicate<String> validId = (id) -> !StringUtil.isEmpty(id) && id.chars().noneMatch(c -> c < '0' || c > '9');
 
-    public static void validatePostTweet(ca.jrvs.apps.twitter.dto.Tweet tweet) {
+    public static void validatePostTweet(Tweet tweet) {
         String text = tweet.getText();
         Double longitude = tweet.getCoordinates().getCoordinates().get(0);
         Double latitude = tweet.getCoordinates().getCoordinates().get(1);

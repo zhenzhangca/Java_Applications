@@ -2,12 +2,16 @@ package ca.jrvs.apps.twitter;
 
 import ca.jrvs.apps.twitter.service.TwitterService;
 import ca.jrvs.apps.twitter.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TwitterCLIRunner {
     private static final String COORD_SEP = ":";
-    private static final String COOMA = ",";
+    private static final String COMMA = ",";
     private TwitterService twitterService;
 
+    @Autowired
     public TwitterCLIRunner(TwitterService twitterService) {
         this.twitterService = twitterService;
     }
@@ -38,7 +42,7 @@ public class TwitterCLIRunner {
         }
         String tweet_text = args[1];
         String coordinate = args[2];
-        String[] coordinatesArray = coordinate.split(COOMA);
+        String[] coordinatesArray = coordinate.split(COORD_SEP);
         if (coordinatesArray.length != 2 || StringUtil.isEmpty(tweet_text)) {
             throw new RuntimeException("Invalid location format\nUSAGE: TwitterCLIApp post \"tweet_text\" \"latitude:longitude\"");
         }
@@ -48,31 +52,21 @@ public class TwitterCLIRunner {
             latitude = Double.parseDouble(coordinatesArray[0]);
             longitude = Double.parseDouble(coordinatesArray[1]);
         } catch (Exception e) {
-            throw new RuntimeException("Invalid location format\nUSAGE: TwitterCLIApp post \"tweet_text\" \"latitude:longitude\"");
+            throw new RuntimeException("Invalid location format\nUSAGE: TwitterCLIApp post \"tweet_text\" \"latitude:longitude\"", e);
         }
         twitterService.postTweet(tweet_text, longitude, latitude);
     }
 
     protected void showTweet(String[] args) {
-        if (args.length < 2) {
-            throw new RuntimeException("USAGE: TwitterCLIApp show tweet_id [fields]");
+        String tweet_id = args[1];
+        if (StringUtil.isEmpty(tweet_id)) {
+            throw new RuntimeException("Error:empty ID\nUSAGE: TwitterCLIApp show tweet_id [fields]");
         }
-        String[] fieldsArray = null;
-        String tweet_id = null;
-        switch (args.length) {
-            case 3:
-                String fields = args[2];
-                if (StringUtil.isEmpty(fields)) {
-                    throw new RuntimeException("Error:empty fields. USAGE: TwitterCLIApp show tweet_id [fields]");
-                }
-                fieldsArray = fields.split(COOMA);
-                break;
-            case 2:
-                tweet_id = args[1];
-                if (StringUtil.isEmpty(tweet_id)) {
-                    throw new RuntimeException("Error:empty ID\nUSAGE: TwitterCLIApp show tweet_id [fields]");
-                }
+        String fields = args[2];
+        if (StringUtil.isEmpty(fields)) {
+            throw new RuntimeException("Error:empty fields. USAGE: TwitterCLIApp show tweet_id [fields]");
         }
+        String[] fieldsArray = fields.split(COMMA);
         twitterService.showTweet(tweet_id, fieldsArray);
     }
 
@@ -82,7 +76,7 @@ public class TwitterCLIRunner {
         }
 
         String tweetIds = args[1];
-        String[] ids = tweetIds.split(COOMA);
+        String[] ids = tweetIds.split(COMMA);
         twitterService.deleteTweets(ids);
     }
 }

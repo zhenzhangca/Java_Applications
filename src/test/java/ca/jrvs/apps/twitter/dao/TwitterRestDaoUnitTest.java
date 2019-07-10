@@ -3,51 +3,69 @@ package ca.jrvs.apps.twitter.dao;
 import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dto.Coordinates;
-import ca.jrvs.apps.twitter.dto.Entities;
 import ca.jrvs.apps.twitter.dto.Tweet;
+import ca.jrvs.apps.twitter.util.JsonUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.Arrays;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class TwitterRestDaoUnitTest {
-    TwitterRestDao twitterRestDao = null;
-    Tweet tweet = null;
-    HttpHelper helper = new ApacheHttpHelper();
+    private CrdRepository twitterRestDao;
+    private Tweet expectedTweet;
+    private String id;
 
-    @Test
-    public void testSave() {
-        twitterRestDao = new TwitterRestDao(helper);
-        tweet = new Tweet();
-        tweet.setCreatedAt("1234e44rrt");
-        tweet.setId(1112233344L);
-        tweet.setIdStr("112ddd2343344");
-        tweet.setEntities(new Entities());
-        tweet.setCoordinates(new Coordinates());
-        tweet.setRetweetCount(5l);
-        tweet.setFavoriteCount(5l);
-        tweet.setRetweeted(false);
-        tweet.setText("hello world!!@!!");
-        tweet.setFavorited(false);
-        Tweet returnValue = twitterRestDao.save(tweet);
+    @Before
+    public void setup() {
+        //Set up an expectedTweet
+        expectedTweet = new Tweet();
+        //Set up a dao
+        HttpHelper httpHelper = new ApacheHttpHelper();
+        twitterRestDao = new TwitterRestDao(httpHelper);
+    }
 
-        System.out.println(returnValue);
-        assertNotNull(returnValue);
-        assertEquals(tweet, returnValue);
+    @After
+    public void cleanup() {
+        System.out.println("Deleting " + this.id);
+        //remove the tweet
+        twitterRestDao.deleteById(this.id);
     }
 
     @Test
-    public void testFindById() {
-        twitterRestDao = new TwitterRestDao(helper);
-        String id = "1147181000818143234";
-        Tweet returnValue = twitterRestDao.findById(id);
-        assertNotNull(returnValue);
+    public void create() throws JsonProcessingException {
+        //return by api
+        String tweetStr = "hello world!";
+        Coordinates coordinates = new Coordinates();
+        coordinates.setCoordinates(Arrays.asList(10.0, 10.0));
+        coordinates.setType("Point");
+        expectedTweet.setText(tweetStr);
+        expectedTweet.setCoordinates(coordinates);
+
+        System.out.println(expectedTweet);
+        System.out.println(JsonUtil.toPrettyJson(expectedTweet));
+
+        //call create method
+        Tweet createTweet = (Tweet) twitterRestDao.create(expectedTweet);
+        System.out.println(JsonUtil.toPrettyJson(createTweet));
+
+        //validate two object
+        assertTweets(expectedTweet, createTweet);
+        id = createTweet.getIdStr();
+
+        //call findById method
+        Tweet showTweet = (Tweet) twitterRestDao.findById(this.id);
+        assertTweets(expectedTweet, showTweet);
     }
 
-    @Test
-    public void testDeleteById() {
-        twitterRestDao = new TwitterRestDao(helper);
-        String id = "1146920388036911104";
-        Tweet returnValue = twitterRestDao.deleteById(id);
-        assertNotNull(returnValue);
-     }
+    public void assertTweets(Tweet expectedTweet, Tweet actualTweet) {
+        assertNotNull(actualTweet);
+        assertNotNull(actualTweet.getIdStr());
+        assertEquals(expectedTweet.getText(), actualTweet.getText());
+        assertEquals(expectedTweet.getCoordinates(), actualTweet.getCoordinates());
+    }
 }

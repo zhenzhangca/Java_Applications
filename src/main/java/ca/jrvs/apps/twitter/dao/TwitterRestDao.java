@@ -5,7 +5,10 @@ import ca.jrvs.apps.twitter.dto.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -13,6 +16,7 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+@Repository
 public class TwitterRestDao implements CrdRepository<Tweet, String> {
 
     //URI constants
@@ -25,11 +29,12 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
     private static final String AMPERSAND = "&";
     private static final String EQUAL = "=";
 
-    //Response code
+    //Response status code
     private static final int HTTP_OK = 200;
 
     private HttpHelper httpHelper;
 
+    @Autowired
     public TwitterRestDao(HttpHelper httpHelper) {
         this.httpHelper = httpHelper;
     }
@@ -40,7 +45,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
      * @throws IllegalArgumentException when text is empty or invalid latitude or invalid longitude
      */
     @Override
-    public Tweet save(Tweet tweet) {
+    public Tweet create(Tweet tweet) {
         //Construct URI
         URI uri;
         try {
@@ -52,7 +57,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
         //Execute HTTP Request
         HttpResponse response = httpHelper.httpPost(uri);
 
-        //Validate response and deser response to Tweet object
+        //Validate response and deserialize response to Tweet object
         return parseResponseBody(response, HTTP_OK);
     }
 
@@ -162,7 +167,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
      * Check response status code Convert Response Entity to Tweet
      */
     protected Tweet parseResponseBody(HttpResponse response, Integer expectedStatusCode) {
-        Tweet tweet = null;
+        Tweet tweet;
 
         //Check response status
         int status = response.getStatusLine().getStatusCode();
@@ -182,13 +187,12 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
             throw new RuntimeException("Failed to convert entity to String", e);
         }
 
-        //Deser JSON string to Tweet object
+        //Deserialize JSON String into Tweet object
         try {
-            tweet = (Tweet) JsonUtil.toObjectFromJson(jsonStr, Tweet.class);
+            tweet = JsonUtil.toObjectFromJson(jsonStr, Tweet.class);
         } catch (IOException e) {
             throw new RuntimeException("Unable to convert JSON str to Object", e);
         }
-
         return tweet;
     }
 }

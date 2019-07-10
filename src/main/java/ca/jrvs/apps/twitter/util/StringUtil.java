@@ -1,11 +1,16 @@
 package ca.jrvs.apps.twitter.util;
 
+import java.util.Arrays;
+
 public class StringUtil {
 
-    public static boolean isEmpty(String... str) {
-        if (str == null || str.length == 0) {
-            return false;
-        }
-        return true;
+    public static boolean isEmpty(String str) {
+        return str==null || str.isEmpty();
     }
+
+    public static boolean isEmpty(String... strs) {
+        return Arrays.stream(strs).anyMatch(str -> str == null | str.isEmpty());
+    }
+
+
 }
