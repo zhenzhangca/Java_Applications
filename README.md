@@ -12,5 +12,13 @@ You can talk about the following points
 ## Enhancements and Issues
   
 # Java JDBC App
+## Introduction
+## Enhancements and Issues
 
 # Twitter CLI App
+## Introduction
+The Twitter CLI App is
+
+## Usage
+
+## Enhancements and Issues

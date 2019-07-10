@@ -66,7 +66,6 @@ public class TwitterServiceImp implements TwitterService {
             return null;
         }
         //Validate each id. Delete tweets by ids
-
         for (String id : ids) {
             TwitterUtil.validId.test(id);
             Tweet tweet = (Tweet) dao.deleteById(id);
@@ -94,10 +93,8 @@ public class TwitterServiceImp implements TwitterService {
         if (fields == null || fields.length == 0) {
             return tweet;
         }
-
-        //rTweet = deep copy of tweet(in order not to change the original tweet object)
+        //rTweet = deep copy of tweet(make sure not to change the original tweet object)
         Tweet rTweet = JsonUtil.toObjectFromJson(JsonUtil.toPrettyJson(tweet), Tweet.class);
-
         //helper lambda function to remove leading and trailing spaces
         Function<String[], String[]> trimStrArray = (items) -> Arrays.stream(items).map(String::trim)
                 .toArray(String[]::new);

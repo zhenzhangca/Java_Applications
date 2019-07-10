@@ -19,15 +19,14 @@ import java.net.URI;
 
 @Component
 public class ApacheHttpHelper implements HttpHelper {
-
     private OAuthConsumer consumer;
     private HttpClient httpClient;
 
     /**
-     * Default constructor. Get keys and token from system environment
+     * Default constructor. Get keys and tokens from System environment,initialize member fields
      */
     public ApacheHttpHelper() {
-        //Get keys and tokens from system environment
+        //Get keys and tokens from System environment
         String consumerKey = System.getenv("consumerKey");
         String consumerSecret = System.getenv("consumerSecret");
         String accessToken = System.getenv("accessToken");
@@ -40,7 +39,7 @@ public class ApacheHttpHelper implements HttpHelper {
         //Setup OAuth
         consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
         consumer.setTokenWithSecret(accessToken, tokenSecret);
-        //Initialize  a httpClient
+        //Initialize a httpClient
         httpClient = new DefaultHttpClient();
     }
 
@@ -51,7 +50,7 @@ public class ApacheHttpHelper implements HttpHelper {
             response = excuteHttpRequest(HttpMethod.POST, uri);
             return response;
         } catch (OAuthException | IOException e) {
-            throw new RuntimeException("Failed to execute", e);
+            throw new RuntimeException("Failed to execute HttpRequest");
         }
 
     }
@@ -63,7 +62,7 @@ public class ApacheHttpHelper implements HttpHelper {
             response = excuteHttpRequest(HttpMethod.GET, uri);
             return response;
         } catch (OAuthException | IOException e) {
-            throw new RuntimeException("Failed to execute", e);
+            throw new RuntimeException("Failed to execute HttpRequest");
         }
     }
 

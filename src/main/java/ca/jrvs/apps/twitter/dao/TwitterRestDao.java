@@ -8,7 +8,6 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -18,7 +17,6 @@ import java.nio.charset.StandardCharsets;
 
 @Repository
 public class TwitterRestDao implements CrdRepository<Tweet, String> {
-
     //URI constants
     private static final String API_BASE_URI = "https://api.twitter.com";
     private static final String POST_PATH = "/1.1/statuses/update.json";
@@ -28,7 +26,6 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
     private static final String QUERY_SYM = "?";
     private static final String AMPERSAND = "&";
     private static final String EQUAL = "=";
-
     //Response status code
     private static final int HTTP_OK = 200;
 
@@ -53,10 +50,8 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
         } catch (URISyntaxException | UnsupportedEncodingException e) {
             throw new IllegalArgumentException("Invalid tweet input", e);
         }
-
         //Execute HTTP Request
         HttpResponse response = httpHelper.httpPost(uri);
-
         //Validate response and deserialize response to Tweet object
         return parseResponseBody(response, HTTP_OK);
     }
@@ -70,11 +65,9 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
         } catch (URISyntaxException e) {
             throw new IllegalArgumentException("Unable to construct URI", e);
         }
-
         //Execute HTTP Request
         HttpResponse response;
         response = httpHelper.httpGet(uri);
-
         //Validate response and deser response to Tweet object
         return parseResponseBody(response, HTTP_OK);
     }
@@ -88,12 +81,10 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
         } catch (URISyntaxException e) {
             throw new IllegalArgumentException("Unable to construct URI", e);
         }
-
         //Execute HTTP Request
         HttpResponse response;
         response = httpHelper.httpPost(uri);
-
-        //Validate response and deser response to Tweet object
+        //Validate response and deserialize response to Tweet object
         return parseResponseBody(response, HTTP_OK);
     }
 
@@ -107,12 +98,13 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
                 .append("/")
                 .append(id)
                 .append(".json");
-
         return new URI(sb.toString());
     }
 
     /**
-     * Construct a twitter SHOW URI https://api.twitter.com/1.1/statuses/show.json?id=210462857140252672
+     * Construct a showUri
+     * <p>
+     * e.g. https://api.twitter.com/1.1/statuses/show.json?id=1146569038157373440
      *
      * @throws URISyntaxException when URI is invalid
      */
@@ -126,8 +118,9 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
     }
 
     /**
-     * Construct a twitter POST URI
-     * e.g. https://api.twitter.com/1.1/statuses/update.json?status=some_text&lat=11.11&long=-22.22
+     * Construct a postUri
+     * <p>
+     * e.g. https://api.twitter.com/1.1/statuses/update.json?status=hello&lat=11.0&long=-22.0
      *
      * @throws URISyntaxException           when URI is invalid
      * @throws UnsupportedEncodingException when failed to encode text
@@ -174,19 +167,16 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
         if (status != expectedStatusCode) {
             throw new RuntimeException("Unexpected HTTP status:" + status);
         }
-
         if (response.getEntity() == null) {
             throw new RuntimeException("Empty response body");
         }
-
-        //Convert Response Entity to str
+        //Convert Response Entity to String
         String jsonStr;
         try {
             jsonStr = EntityUtils.toString(response.getEntity());
         } catch (IOException e) {
             throw new RuntimeException("Failed to convert entity to String", e);
         }
-
         //Deserialize JSON String into Tweet object
         try {
             tweet = JsonUtil.toObjectFromJson(jsonStr, Tweet.class);

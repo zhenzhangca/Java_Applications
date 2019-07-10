@@ -20,14 +20,13 @@ public class TwitterCLISpringBoot implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(TwitterCLISpringBoot.class);
-
         //Turn off web
         app.setWebApplicationType(WebApplicationType.NONE);
         app.run(args);
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args){
         runner.run(args);
     }
 }

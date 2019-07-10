@@ -26,67 +26,82 @@ public class Company {
     @JsonProperty("dividends")
     private List<Dividend> dividends;
 
+    @JsonProperty("symbol")
     public String getSymbol() {
         return symbol;
     }
 
+    @JsonProperty("symbol")
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 
+    @JsonProperty("companyName")
     public String getCompanyName() {
         return companyName;
     }
 
+    @JsonProperty("companyName")
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
+    @JsonProperty("exchange")
     public String getExchange() {
         return exchange;
     }
 
+    @JsonProperty("exchange")
     public void setExchange(String exchange) {
         this.exchange = exchange;
     }
 
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
 
+    @JsonProperty("description")
     public void setDescription(String description) {
         this.description = description;
     }
 
-
+    @JsonProperty("CEO")
     public String getCeo() {
         return ceo;
     }
 
+    @JsonProperty("CEO")
     public void setCeo(String ceo) {
         this.ceo = ceo;
     }
 
+    @JsonProperty("sector")
     public String getSector() {
         return sector;
     }
 
+    @JsonProperty("sector")
     public void setSector(String sector) {
         this.sector = sector;
     }
 
+    @JsonProperty("financials")
     public List<Financial> getFinancials() {
         return financials;
     }
 
+    @JsonProperty("financials")
     public void setFinancials(List<Financial> financials) {
         this.financials = financials;
     }
 
+    @JsonProperty("dividends")
     public List<Dividend> getDividends() {
         return dividends;
     }
 
+    @JsonProperty("dividends")
     public void setDividends(List<Dividend> dividends) {
         this.dividends = dividends;
     }
