@@ -51,7 +51,7 @@ This project was created based on the DAO design pattern.  I created two DTOs (D
 
 ## Introduction
 
-Twitter CLI App is a tweet manipulation application. Through passing certain arguments, users can create, read and delete tweets(CRD).
+Twitter CLI App is a tweet manipulation application. Through passing certain arguments, users can create, read and delete tweets(CRD). In this project, I use the Spring and Spring Boot framework to manage diffrent components, and implement the business logig through three approaches--Spring Bean Approach, Spring Annotation Approach, and Spring Boot Approach.
 
 ## Usage
 - Create a tweet on your timeline:
