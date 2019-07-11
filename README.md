@@ -24,6 +24,7 @@ for file in listFiles(rootDir)
 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;matchedLines.add(line)  
 writeToFile(matchedLines)  
 - Diagrams
+
 ![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/grepApp.jpg)
 
 # Java JDBC App
