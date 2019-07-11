@@ -71,7 +71,7 @@ public class TwitterServiceImpTest {
         String[] arr = new String[]{mockTweeta.getId().toString(), mockTweetb.getId().toString()};
         List<Tweet> results = service.deleteTweets(arr);
         System.out.println(results);
-        when(mockDao.deleteById(any())).thenReturn(new Tweet());
+        when(mockDao.deleteById(any())).thenReturn(tweetList);
         try {
             service.deleteTweets(null);
         } catch (Exception e) {
