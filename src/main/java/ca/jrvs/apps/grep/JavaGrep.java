@@ -6,58 +6,55 @@ import java.util.List;
 
 public interface JavaGrep {
 
-  /**
-   * Top level search workflow
-   */
-  void process() throws IOException;
+    /**
+     * Top level search workflow
+     */
+    void process() throws IOException;
 
-  /**
-   * Traverse a given directory and return all files
-   *
-   * @param rootDir input directory
-   * @return files under the rootDir
-   */
-  List<File> listFiles(String rootDir);
+    /**
+     * Traverse a given directory and return all files
+     *
+     * @param rootDir input directory
+     * @return files under the rootDir
+     */
+    List<File> listFiles(String rootDir);
 
-  /**
-   * Read a file and return all the lines
-   * Explore: FileReader, BufferReader and Character encoding
-   *
-   * @param inputFile file to be read
-   * @return lines
-   * @throws IllegalAccessException if a given inputFile is not a file
-   */
-  List<String> readLines(File inputFile) throws IllegalAccessException;
+    /**
+     * Read a file and return all the lines
+     * Explore: FileReader, BufferReader and Character encoding
+     *
+     * @param inputFile file to be read
+     * @return lines
+     * @throws IllegalAccessException if a given inputFile is not a file
+     */
+    List<String> readLines(File inputFile) throws IllegalAccessException;
 
-  /**
-   * check if a line contains the regex pattern (passed by user)
-   *
-   * @param line input String
-   * @return true if there is a match
-   */
-  boolean containsPattern(String line);
+    /**
+     * Check if a line contains the regex pattern (passed by user)
+     *
+     * @param line input String
+     * @return true if there is a match
+     */
+    boolean containsPattern(String line);
 
-  /**
-   * write a line to a file Explore: FileOutputStream, OutputStreamWriter and BufferedWriter
-   *
-   * @param lines matched line
-   * @throws IOException if write failed
-   */
-  void writeToFile(List<String> lines) throws IOException;
+    /**
+     * Write a line to a file Explore: FileOutputStream, OutputStreamWriter and BufferedWriter
+     *
+     * @param lines matched line
+     * @throws IOException if write failed
+     */
+    void writeToFile(List<String> lines) throws IOException;
 
-  /**
-   * getter/setter
-   */
-  String getRootPath();
+    String getRootPath();
 
-  void setRootPath(String rootPath);
+    void setRootPath(String rootPath);
 
-  String getRegex();
+    String getRegex();
 
-  void setRegex(String regex);
+    void setRegex(String regex);
 
-  String getOutFile();
+    String getOutFile();
 
-  void setOutFile(String outFile);
+    void setOutFile(String outFile);
 }
 

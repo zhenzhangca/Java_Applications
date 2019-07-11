@@ -16,9 +16,10 @@ public class ApacheHttpHelperTest {
     private HttpHelper httpHelper;
 
     @Before
-    public void setup(){
+    public void setup() {
         httpHelper = new ApacheHttpHelper();
     }
+
     @Test
     public void httpPostCreate() {
         String createUri = "https://api.twitter.com/1.1/statuses/update.json?status=thenewtweet&lat=22.0&long=11.0";
@@ -32,7 +33,7 @@ public class ApacheHttpHelperTest {
     }
 
     @Test
-    public void httpPostDelete(){
+    public void httpPostDelete() {
         String deleteUri = "https://api.twitter.com/1.1/statuses/destroy/1148663615714725889.json";
         try {
             HttpResponse deleteResponse = httpHelper.httpPost(new URI(deleteUri));
@@ -41,7 +42,6 @@ public class ApacheHttpHelperTest {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-
     }
 
     @Test

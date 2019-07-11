@@ -27,30 +27,29 @@ public class TwitterServiceImpTest {
     @Test
     public void postTweet() {
         Tweet mockTweet = new Tweet();
-        mockTweet.setText("test tweet "+System.currentTimeMillis());
+        mockTweet.setText("test tweet " + System.currentTimeMillis());
         when(mockDao.create(any())).thenReturn(mockTweet);
 
         Tweet tweet = service.postTweet("post a tweet demo" + System.currentTimeMillis(), 11.0, 12.0);
         System.out.println(tweet);
 
-        try{
+        try {
             service.postTweet("", 0.0, 0.0);
             fail();
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException("Empty tweet");
         }
-
     }
 
     @Test
     public void showTweet() {
         Tweet mockTweet = new Tweet();
         mockTweet.setId(1234567890l);
-        mockTweet.setText("test tweet "+System.currentTimeMillis());
+        mockTweet.setText("test tweet " + System.currentTimeMillis());
         when(mockDao.findById(any())).thenReturn(mockTweet);
-        try{
+        try {
             service.showTweet(mockTweet.getId().toString(), new String[]{"text", "id"});
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException("Invalid id");
         }
     }
@@ -67,15 +66,10 @@ public class TwitterServiceImpTest {
         tweetList.add(mockTweeta);
         tweetList.add(mockTweetb);
         when(mockDao.deleteById(any())).thenReturn(tweetList);
-        try{
-            service.deleteTweets(new String[]{mockTweeta.getId().toString(),mockTweetb.getId().toString()});
-        }catch(Exception e){
+        try {
+            service.deleteTweets(new String[]{mockTweeta.getId().toString(), mockTweetb.getId().toString()});
+        } catch (Exception e) {
             throw new IllegalArgumentException("Invalid ids");
         }
-    }
-
-    @Test
-    public void selectFields() {
-
     }
 }
