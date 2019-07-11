@@ -56,11 +56,20 @@ Twitter CLI App is a tweet manipulation application. Through passing certain arg
 
 ## Usage
 
-You can save any file of the workspace to **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Save on**. Even if a file in the workspace is already synced, you can save it to another location. StackEdit can sync one file with multiple locations and accounts.
+
 
 ## Design and Implementation
 
 - Diagram
 
 ![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/TwitterCLIApp.jpg)
+
+- Implementtation
+
+&#8195;&#8195;- HttpHelper: Making HTTP requests (GET/PUT/DELETE) and handle auth
+&#8195;&#8195;- Dao: Data Access Object which handles tweet object (Dao depends on HttpHelper)
+&#8195;&#8195;- Service: Business logic. In other words, it depends on Dao, and manipulate twitter object according to application requirements (e.g. select certain fields when showing tweet object)
+&#8195;&#8195;- Runner: Parse user CLI inputs and then calls the corresponding service methods
+&#8195;&#8195;- Main: Create above components and start applications
+
 
