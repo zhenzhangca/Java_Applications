@@ -13,10 +13,10 @@ The logic is similar to the command line in Linux:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`egrep -r {regex} {rootPath} > {outFile}`  
 For example:
 When user passes `".*data.*", "~/dev/jrvs/bootcamp/linux_sql" "/tmp/grep.out"` to the main function, the app will 
-search all files in "~/dev/jrvs/bootcamp/linux_sql" directory, and output lines which contain "data" keyword to the output file "/tmp/grep.out".
+search all files in `"~/dev/jrvs/bootcamp/linux_sql"` directory, and output lines which contain "data" keyword to the output file `"/tmp/grep.out"`.
 
 ## Design and Implementation
-- Pseudo code:
+- Pseudo code:  
 matchedLines = []  
 for file in listFiles(rootDir)  
 &#8195;&#8195;for line in readLines(file)  
