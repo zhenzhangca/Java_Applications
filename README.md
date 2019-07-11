@@ -33,8 +33,8 @@ The JDBC App is a data manipulation application. Users can implement create, rea
 
 ## Design and Implementation
 
-This project was created based on the DAO design pattern.  I created two DTOs (Data Transfer Object) such as Customer and Order, then through the manipulation of DTO between DAO and relational database to implement data CRUD.
-Important libraries:  
+This project was created based on the DAO design pattern.  I created two DTOs (Data Transfer Object) such as Customer and Order, then through the manipulation of DTO between DAO and relational database to implement data CRUD.  
+- Important libraries:  
 &#8195;&#8195;java.sql.DriverManager;  
 &#8195;&#8195;java.sql.Connection;  
 &#8195;&#8195;java.sql.PreparedStatement;  
