@@ -66,10 +66,10 @@ Twitter CLI App is a tweet manipulation application. Through passing certain arg
 
 - Implementtation
 
-&#8195;&#8195;- HttpHelper: Making HTTP requests (GET/PUT/DELETE) and handle auth
-&#8195;&#8195;- Dao: Data Access Object which handles tweet object (Dao depends on HttpHelper)
-&#8195;&#8195;- Service: Business logic. In other words, it depends on Dao, and manipulate twitter object according to application requirements (e.g. select certain fields when showing tweet object)
-&#8195;&#8195;- Runner: Parse user CLI inputs and then calls the corresponding service methods
+&#8195;&#8195;- HttpHelper: Making HTTP requests (GET/PUT/DELETE) and handle auth  
+&#8195;&#8195;- Dao: Data Access Object which handles tweet object (Dao depends on HttpHelper)  
+&#8195;&#8195;- Service: Business logic. In other words, it depends on Dao, and manipulate twitter object according to application requirements (e.g. select certain fields when showing tweet object)  
+&#8195;&#8195;- Runner: Parse user CLI inputs and then calls the corresponding service methods  
 &#8195;&#8195;- Main: Create above components and start applications
 
 
