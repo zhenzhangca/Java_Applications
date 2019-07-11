@@ -15,7 +15,7 @@ file "/tmp/grep.out".
 ## Design and Implementation
 - Pseudo code:
 matchedLines = []
-for file in listFiles(rootDir)
+for file in listFiles(rootDir)\n
   for line in readLines(file)
       if containsPattern(line)
         matchedLines.add(line)
