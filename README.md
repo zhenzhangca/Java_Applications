@@ -64,7 +64,7 @@ Twitter CLI App is a tweet manipulation application. Through passing certain arg
 
 &#8195;&#8195;- USAGE: TwitterCLIApp show tweet_id [field1,fields2]  
 &#8195;&#8195;&#8195;&#8195;e.g.  
-&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;TwitterCLI show 1097607853932564480 "id,text,retweet_count"  
+&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;TwitterCLIApp show 1097607853932564480 "id,text,retweet_count"  
 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;Response:  
 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;{  
 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;   "id": 1097607853932564480,  
