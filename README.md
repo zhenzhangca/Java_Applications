@@ -21,7 +21,7 @@ for file in listFiles(rootDir)
         matchedLines.add(line)
 writeToFile(matchedLines)
 - Diagrams
-![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/grepApp.png)
+![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/grepApp.jpg)
 ## Enhancements and Issues
   
 # Java JDBC App
