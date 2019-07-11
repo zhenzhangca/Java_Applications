@@ -40,9 +40,11 @@ Important libraries:
 &#8195;&#8195;java.sql.PreparedStatement;
 &#8195;&#8195;java.sql.ResultSet;
 - Java Code diagram
+
 ![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp01.jpg)
 
 - ER diagram
+
 ![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp02.png)
 
 # Twitter CLI App
@@ -58,5 +60,6 @@ You can save any file of the workspace to **Google Drive**, **Dropbox** or **Git
 ## Design and Implementation
 
 - Diagram
+
 ![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/TwitterCLIApp.jpg)
 
