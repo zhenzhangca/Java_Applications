@@ -21,11 +21,12 @@ file "/tmp/grep.out".
 - Pseudo code:
 
 matchedLines = []
-for file in listFiles(rootDir)
-  for line in readLines(file)
-      if containsPattern(line)
-        matchedLines.add(line)
-writeToFile(matchedLines)
+
+for file in listFiles(rootDir)</br>
+  for line in readLines(file)</br>
+        if containsPattern(line)</br>
+        matchedLines.add(line)</br>
+writeToFile(matchedLines)</br>
 
 - Diagrams
 
