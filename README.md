@@ -10,9 +10,9 @@ The app takes three arguments:
     rootPath -- the  root directory path
     outFile -- the output file name
 The logic is similar to the command line in Linux:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`egrep -r {regex} {rootPath} > {outFile}`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`egrep -r {regex} {rootPath} > {outFile}`  
 For example:
-When user passes ".*data.*", "~/dev/jrvs/bootcamp/linux_sql" and "/tmp/grep.out" to the main function, the app will 
+When user passes `".*data.*", "~/dev/jrvs/bootcamp/linux_sql" "/tmp/grep.out"` to the main function, the app will 
 search all files in "~/dev/jrvs/bootcamp/linux_sql" directory, and output lines which contain "data" keyword to the output file "/tmp/grep.out".
 
 ## Design and Implementation
@@ -67,23 +67,20 @@ Twitter CLI App is a tweet manipulation application. Through passing certain arg
 &#8195;&#8195;&#8195;&#8195;e.g.  
 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;TwitterCLI show 1097607853932564480 "id,text,retweet_count"  
 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;Response:  
-&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;{
-&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;   "id": 1097607853932564480,
-&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;    "text": "test with loc223",
-&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;    "retweet_count": 0
-&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;}  
+&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;{  
+&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;   "id": 1097607853932564480,  
+&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;    "text": "test with loc223",  
+&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;    "retweet_count": 0  
+&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;}   
 &#8195;&#8195;- Description: Lookup a tweet by ID and print the tweet object in JSON format. Show all fields in JSON document if [field1,fields2] is empty. Otherwise, only show user specified [fields] in the JSON document.  
 &#8195;&#8195;- Arguments: tweet_id(Tweet ID) which is same as id_str in the tweet object, [field1,fields2] (A comma-separated list of top-level fields from the tweet object which is similar to SELECT clause in SQL).
 
 -  Delete a tweet by tweet ID  
 
 &#8195;&#8195;- USAGE: TwitterCLIApp delete tweet_ids  
-&#8195;&#8195;- Description: Delete a list of tweets by id, and output deleted tweet id, then print deleted tweet object.
+&#8195;&#8195;- Description: Delete a list of tweets by id, and output deleted tweet id, then print deleted tweet object.  
 &#8195;&#8195;- Arguments: tweet_ids(A comma-separated list of tweets).
  
-
-
-
 ## Design and Implementation
 
 - Diagram
