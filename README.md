@@ -1,4 +1,4 @@
-﻿# Java Grep App
+# Java Grep App
 
 ## Introduction
 The Java Grep App is a text retrieval application. Through passing certain arguments, users can search for a text pattern recursively in a given directory, and output matched lines to a file.
