@@ -9,8 +9,7 @@ The app takes three arguments:
     regex -- a special text string for describing a search pattern (more powerful than wildcard)
     rootPath -- the  root directory path
     outFile -- the output file name
-The logic is similar to the command line in Linux:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`egrep -r {regex} {rootPath} > {outFile}`  
+The logic is similar to the `egrep -r {regex} {rootPath} > {outFile}`command line in Linux:  
 For example:
 When user passes `".*data.*", "~/dev/jrvs/bootcamp/linux_sql" "/tmp/grep.out"` to the main function, the app will 
 search all files in `"~/dev/jrvs/bootcamp/linux_sql"` directory, and output lines which contain "data" keyword to the output file `"/tmp/grep.out"`.
