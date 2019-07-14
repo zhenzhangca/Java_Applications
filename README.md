@@ -36,7 +36,7 @@ The JDBC App is a data-processing application. This app implements CRUD(create, 
 
 ## Design and Implementation
 
-This project was created based on the DAO(Data Access Object) design pattern which allows us to isolate the application/business layer from the persistence layer (PostgreSQL database).  Create a DataAccessObject abstract class which is extended by two implementation classes `CustomerDAO` and `OrderDAO`. These two classes are used to transfer Customer and Order DTOs (Data Transfer Object) to PostgreSQL database to perform CRUD operations.  
+This project was created based on the DAO(Data Access Object) design pattern which allows us to isolate the application/business layer from the persistence layer (PostgreSQL database).  Create an abstract class DataAccessObject which is extended by two implementation classes `CustomerDAO` and `OrderDAO`. These two classes are used to transfer DTOs (Data Transfer Object) Customer and Order to PostgreSQL database to perform CRUD operations.  
 - Important libraries: 
 ```
    java.sql.DriverManager;  
