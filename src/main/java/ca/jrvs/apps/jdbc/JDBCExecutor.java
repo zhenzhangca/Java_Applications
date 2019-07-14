@@ -17,7 +17,7 @@ public class JDBCExecutor {
 
             CustomerDAO customerDAO = new CustomerDAO(connection);
             /**
-             * Demo 1, test connection
+             * Demo 1 test connection
              */
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM CUSTOMER");
@@ -27,7 +27,7 @@ public class JDBCExecutor {
             System.out.println("********************************************");
 
             /**
-             * Demo 2, test create method in CustomerDAO
+             * Demo 2 test create method in CustomerDAO
              */
             Customer customer_2 = new Customer();
             customer_2.setFirstName("Zhen");
@@ -101,8 +101,6 @@ public class JDBCExecutor {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 }
 
