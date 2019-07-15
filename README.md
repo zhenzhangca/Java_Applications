@@ -58,8 +58,8 @@ This project was created based on the DAO(Data Access Object) design pattern whi
 ![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp02.png)  
 
 ## Enhancements and Issues
-- SQL statements are hardcode, should write a class for generating SQL statements by passing certain arguments.
-- Exist duplicated code on getting Connection object, should writ a util class for getting Connection Object in DAO layer.
+- SQL statements are hard-code, should write a class for generating SQL statements by passing certain arguments.
+- Exist duplicated code on getting Connection object, should write a util class for getting Connection Object in DAO layer.
 - Explore transactions.
 
 
