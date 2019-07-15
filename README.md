@@ -30,9 +30,9 @@ writeToFile(matchedLines)
 ![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/grepApp.jpg)   
 
 ## Enhancements and Issues
-- When the amount of files is very large, read lines would affect the performance of memory. Should add a file filter.
+- When the amount of files is very large, read lines would affect the performance of memory. Add a file filter to reduce the memory pressure.
 - Can not support multiple regex.
-- Add the statistical function for the matched lines.
+- Add the statistical method for the matched lines.
 
 # Java JDBC App
 
