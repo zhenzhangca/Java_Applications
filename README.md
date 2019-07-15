@@ -27,7 +27,12 @@ writeToFile(matchedLines)
 
 - Diagrams
 
-![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/grepApp.jpg)
+![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/grepApp.jpg)   
+
+## Enhancement and Issues
+- When the amount of files is very large, read lines would affect the performance of memory. Should add a file filter.
+- Can not support multiple regex.
+- Add the statistical function for the matched lines.
 
 # Java JDBC App
 
@@ -50,14 +55,19 @@ This project was created based on the DAO(Data Access Object) design pattern whi
 
 - ER diagram
 
-![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp02.png)   
+![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp02.png)  
+
+## Enhancements and Issues
+- SQL statements are hardcode, should write a class for generating SQL statements by passing certain arguments.
+- Exist duplicated code on getting Connection object, should writ a util class for getting Connection Object in DAO layer.
+- Explore transactions.
 
 
 # Twitter CLI App
 
 ## Introduction
 
-Twitter CLI App is a tweet manipulation application. Through passing certain arguments, users can create, read and delete tweets(CRD). In this project, I use the Spring and Spring Boot framework to manage different components, and implement the business logic through three approaches--Spring Bean Approach, Spring Annotation Approach, and Spring Boot Approach.
+The Twitter CLI App is a tweet manipulation application. Through passing certain arguments, users can create, read and delete tweets(CRD). In this project, I use the Spring and Spring Boot framework to manage different components' dependencies, and implement the business logic through three approaches--Spring Bean Approach, Spring Annotation Approach, and Spring Boot Approach.
 
 ## Usage
 - Create a tweet:
@@ -100,6 +110,11 @@ Twitter CLI App is a tweet manipulation application. Through passing certain arg
   - Runner: Parse user CLI inputs and then calls the corresponding service methods  
   - Main: Create above components and start applications
 ```
+## Enhancements and Issues
+- Can not update existed tweets.
+- Can not create a new tweet in image, video, etc. only text format.
+- Can not create tweets with duplicated status.
+
 
 
 
