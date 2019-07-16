@@ -2,8 +2,8 @@
 
 The Java_Applications project include three applications: 
 - Twitter CLI App
-- Java JDBC App
 - Java Grep App
+- Java JDBC App
 
 # Twitter CLI App
 
