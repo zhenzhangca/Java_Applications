@@ -55,36 +55,7 @@ The Twitter CLI App is a tweet manipulation application using Twitter REST APIs.
 ## Enhancements and Issues
 - Can not update existed tweets.
 - Can not create a new tweet in image, video, etc. only text format.
-- Can not create tweets with duplicated status.  
-
-# Java JDBC App
-
-## Introduction
-The JDBC App is a data-processing application. This app implements CRUD(create, read, update and delete) functionality with JDBC(Java Database Connectivity) APIs, which allows users to create, read, update and delete data in PostgreSQL RDBMS.
-
-## Design and Implementation
-
-This project was created based on the DAO(Data Access Object) design pattern which allows us to isolate the application/business layer from the persistence layer (PostgreSQL database).  Create an abstract class DataAccessObject which is extended by two implementation classes `CustomerDAO` and `OrderDAO`. These two classes are used to transfer DTOs (Data Transfer Object) Customer and Order to PostgreSQL database to perform CRUD operations.  
-- Important libraries: 
-```
-   java.sql.DriverManager;  
-   java.sql.Connection;  
-   java.sql.PreparedStatement;  
-   java.sql.ResultSet;  
-```
-- Java Code diagram
-
-![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp01.jpg)
-
-- ER diagram
-
-![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp02.png)  
-
-## Enhancements and Issues
-- SQL statements are hard-code, should write a class for generating SQL statements by passing certain arguments.
-- Exist duplicated code on getting Connection object, should write a util class for getting Connection Object in DAO layer.
-- Explore transactions.  
-
+- Can not create tweets with duplicated status.    
 
 # Java Grep App
 
@@ -120,8 +91,35 @@ writeToFile(matchedLines)
 ## Enhancements and Issues
 - When the amount of files is very large, read lines would affect the performance of memory. Add a file filter to reduce the memory pressure.
 - Can not support multiple regex.
-- Add the statistical method for the matched lines.
+- Add the statistical method for the matched lines.  
 
+# Java JDBC App
+
+## Introduction
+The JDBC App is a data-processing application. This app implements CRUD(create, read, update and delete) functionality with JDBC(Java Database Connectivity) APIs, which allows users to create, read, update and delete data in PostgreSQL RDBMS.
+
+## Design and Implementation
+
+This project was created based on the DAO(Data Access Object) design pattern which allows us to isolate the application/business layer from the persistence layer (PostgreSQL database).  Create an abstract class DataAccessObject which is extended by two implementation classes `CustomerDAO` and `OrderDAO`. These two classes are used to transfer DTOs (Data Transfer Object) Customer and Order to PostgreSQL database to perform CRUD operations.  
+- Important libraries: 
+```
+   java.sql.DriverManager;  
+   java.sql.Connection;  
+   java.sql.PreparedStatement;  
+   java.sql.ResultSet;  
+```
+- Java Code diagram
+
+![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp01.jpg)
+
+- ER diagram
+
+![image](https://github.com/zhenzhangca/Linux_Usage_Agent/blob/master/img-folder/JDBCApp02.png)  
+
+## Enhancements and Issues
+- SQL statements are hard-code, should write a class for generating SQL statements by passing certain arguments.
+- Exist duplicated code on getting Connection object, should write a util class for getting Connection Object in DAO layer.
+- Explore transactions.   
 
 
 
